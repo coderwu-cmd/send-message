@@ -5,7 +5,6 @@
 // import API from '../../api/loveMsg'
 // import { getConfig } from '../../utils/getConfig'
 import { wxNotify } from '../WxNotify'
-import dayjs from 'dayjs'
 // import { textTemplate } from './templates/text'
 // import { textCardTemplate } from './templates/textcard'
 
@@ -77,7 +76,7 @@ const weatherInfo = async () => {
 // }
 
 const sendMessage = async () => {
-  const content = '现在是北京时间' + dayjs().format('YYYY-MM-DD HH:mm:ss') + '请打卡'
+  const content = '记得打卡哟'
   await wxNotify({
     msgtype: 'text',
     text: {
