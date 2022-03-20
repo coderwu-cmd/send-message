@@ -2,14 +2,14 @@ name: GoodMorning
 on:
   workflow_dispatch:
     branches:
-      - master
+      - main
   schedule:
-    # `分 时 天 月 周` 时按照标准时间 北京时间=标准时间+8 18表示北京时间早上2点 每个两分钟执行一次
-    - cron: '* * * * *'
+    # `分 时 天 月 周` 时按照标准时间 北京时间=标准时间+8 早上8.40和下午6点执行一次
+    - cron: '40 2  00 3 * * *'
 # on:
 #   push:
 #     branches:
-#       - master
+#       - main
 
 jobs:
   build:

@@ -5,6 +5,7 @@
 // import API from '../../api/loveMsg'
 // import { getConfig } from '../../utils/getConfig'
 import { wxNotify } from '../WxNotify'
+import dayjs from 'dayjs'
 // import { textTemplate } from './templates/text'
 // import { textCardTemplate } from './templates/textcard'
 
@@ -65,18 +66,18 @@ const weatherInfo = async () => {
   }
 } */
 
-const format = () => {
-  const timer = new Date()
-  const year = timer.getFullYear()
-  const month = timer.getMonth() + 1
-  const date = timer.getDate()
-  const hour = String(timer.getHours()).padStart(2, '0')
-  const minute = String(timer.getMinutes()).padStart(2, '0')
-  return `${year}年${month}月${date}日 ${hour}点${minute}分`
-}
+// const format = () => {
+//   const timer = new Date()
+//   const year = timer.getFullYear()
+//   const month = timer.getMonth() + 1
+//   const date = timer.getDate()
+//   const hour = String(timer.getHours()).padStart(2, '0')
+//   const minute = String(timer.getMinutes()).padStart(2, '0')
+//   return `${year}年${month}月${date}日 ${hour}点${minute}分`
+// }
 
 const sendMessage = async () => {
-  const content = '现在是北京时间' + format() + '请打卡'
+  const content = '现在是北京时间' + dayjs().format('YYYY-MM-DD HH:mm:ss') + '请打卡'
   await wxNotify({
     msgtype: 'text',
     text: {
