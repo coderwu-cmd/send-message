@@ -68,7 +68,7 @@ ${tips}\n`
   // 最高温度
   if (CONFIG.weather_tem && highest && +highest.replace('℃', '') <= 3) {
     description += `
-哈喽哈喽~这里是来自${CONFIG.boy_name}的爱心提醒哦：
+哈喽哈喽~这里是来自${CONFIG.boy_name}的友情提醒哦：
 今日最高温度仅为🥶 ${highest}，可冷可冷了~
 ${CONFIG.girl_name}可要注意保暖哦~\n`
   }
@@ -84,10 +84,13 @@ ${CONFIG.girl_name}可要注意保暖哦~\n`
   //   }
 
   // 内容末尾，自定义
-  description += `
-  [ 点我有惊喜 ] ❤️ 🧡 💛 💚 💖`
+  // description += `
+  // [ 点我有惊喜 ] ❤️ 🧡 💛 💚 💖`
 
-  const title = `这是我们相识的第 ${dateLength} 天`
+  description += `
+  [ 点我进入60s看世界 ]`
+
+  const title = `${CONFIG.girl_name}早上好：`
 
   return {
     msgtype: 'textcard',

@@ -2,16 +2,16 @@
  * @name goodMorning
  * @description 说早安
  */
-// import API from '../../api/loveMsg'
-// import { getConfig } from '../../utils/getConfig'
+import API from '../../api/loveMsg'
+import { getConfig } from '../../utils/getConfig'
 import { wxNotify } from '../WxNotify'
-// import { textTemplate } from './templates/text'
-// import { textCardTemplate } from './templates/textcard'
+import { textTemplate } from './templates/text'
+import { textCardTemplate } from './templates/textcard'
 
-// const CONFIG = getConfig().loveMsg
+const CONFIG = getConfig().loveMsg
 
-/* // 美丽短句
-const goodWord = async () => {
+// 美丽短句
+/* const goodWord = async () => {
   try {
     // 并行请求，优响相应
     const dataSource = await Promise.allSettled([
@@ -46,7 +46,7 @@ const goodWord = async () => {
   } catch (error) {
     console.log('goodWord:err', error)
   }
-}
+} */
 
 // 天气信息
 const weatherInfo = async () => {
@@ -63,7 +63,7 @@ const weatherInfo = async () => {
   } catch (error) {
     console.log('weatherInfo:err', error)
   }
-} */
+}
 
 // const format = () => {
 //   const timer = new Date()
@@ -86,5 +86,7 @@ const sendMessage = async () => {
 }
 // goodMorning
 export const goodMorning = async () => {
-  await sendMessage()
+  // await sendMessage()
+  // await goodWord()
+  await weatherInfo()
 }
