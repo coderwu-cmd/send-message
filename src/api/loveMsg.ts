@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getTian } from '../utils/http'
+import { wxNotify } from '../libs/WxNotify'
 
 /**
  * 给女朋友发送内容的相关接口
@@ -53,6 +54,12 @@ class API {
   async getWeather(city_name: string): Promise<IWeatherResponseProps> {
     const res = await getTian({ url: LoveMsgURL.weather, params: { city: city_name } })
     console.log('weather res', res)
+    wxNotify({
+      msgtype: 'text',
+        text: {
+          content: `weather接口： ${JSON.stringify(res)}`
+        }
+    })
     return res?.[0]
   }
 
