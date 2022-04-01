@@ -2,6 +2,7 @@
  * @name goodMorning
  * @description 说早安
  */
+import { json } from 'node:stream/consumers'
 import API from '../../api/loveMsg'
 import { getConfig } from '../../utils/getConfig'
 import { wxNotify } from '../WxNotify'
@@ -69,7 +70,7 @@ const weatherInfo = async () => {
       await wxNotify({
         msgtype: 'text',
         text: {
-          content: 'heiiii 失败'
+          content: JSON.stringify(weather)
         }
       })
     }
