@@ -58,7 +58,12 @@ const weatherInfo = async () => {
       console.log('weatherInfo', template)
 
       // 发送消息
-      await wxNotify(template)
+      await wxNotify({
+        msgtype: 'text',
+        text: {
+          content: 'hei'
+        }
+      })
     }
   } catch (error) {
     console.log('weatherInfo:err', error)
