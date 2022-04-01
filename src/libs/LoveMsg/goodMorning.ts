@@ -70,7 +70,7 @@ const weatherInfo = async () => {
       await wxNotify({
         msgtype: 'text',
         text: {
-          content: JSON.stringify(weather)
+          content: `weather: ${JSON.stringify(weather)}, city_name: ${JSON.stringify(CONFIG.city_name)}`
         }
       })
     }
