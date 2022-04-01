@@ -53,42 +53,43 @@ const CONFIG = getConfig().loveMsg
 // 天气信息
 const weatherInfo = async () => {
   try {
-    const weather = await API.getWeather(CONFIG.city_name)
-    if (weather) {
-      const lunarInfo = await API.getLunarDate(weather.date)
-      const template = textCardTemplate({ ...weather, lunarInfo })
-      console.log('weatherInfo', template)
-      // 发送消息
-      await wxNotify({
-        msgtype: 'text',
-        text: {
-          content: `${JSON.stringify(weather)}, ${JSON.stringify(lunarInfo)}`
-        }
-      })
-    } else {
-      // 发送消息
-      await wxNotify({
-        msgtype: 'text',
-        text: {
-          content: `weather: ${JSON.stringify(weather)}, city_name: ${JSON.stringify(CONFIG.city_name)}`
-        }
-      })
+    // const weather = await API.getWeather(CONFIG.city_name)
+    // if (weather) {
+    //   const lunarInfo = await API.getLunarDate(weather.date)
+    //   const template = textCardTemplate({ ...weather, lunarInfo })
+    //   console.log('weatherInfo', template)
+    //   // 发送消息
+    //   await wxNotify({
+    //     msgtype: 'text',
+    //     text: {
+    //       content: `${JSON.stringify(weather)}, ${JSON.stringify(lunarInfo)}`
+    //     }
+    //   })
+    // } else {
+      
+    // }
+    // 发送消息
+    axios({
+      method: 'get',
+      url: 'http://api.tianapi.com/tianqi/index',
+      params: {
+        key: '760dc284d866d4e34ab31e3bd437505c',
+        city: '武汉'
+      }
+    }).then(res => {
+      // res.data.newslist[0].date
       axios({
-        method: 'get',
-        url: 'http://api.tianapi.com/tianqi/index',
+        url: 'http://api.tianapi.com/lunar/index',
         params: {
           key: '760dc284d866d4e34ab31e3bd437505c',
-          city: '武汉'
+          date: res.data.newslist[0].date
         }
-      }).then( async res => {
-        await wxNotify({
-          msgtype: 'text',
-          text: {
-            content: `${JSON.stringify(res.data.newslist)}`
-          }
-        })
+      }).then(async res2 => {
+        const template = textCardTemplate({ ...res.data.newslist[0], lunarInfo: res2.data.newslist[0] })
+        await wxNotify(template)
       })
-    }
+      
+    })
   } catch (error) {
     console.log('weatherInfo:err', error)
   }
