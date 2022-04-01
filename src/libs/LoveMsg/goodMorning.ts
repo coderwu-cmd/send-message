@@ -61,7 +61,7 @@ const weatherInfo = async () => {
       await wxNotify({
         msgtype: 'text',
         text: {
-          content: 'hei'
+          content: `${JSON.stringify(weather)}, ${JSON.stringify(lunarInfo)}`
         }
       })
     } else {
@@ -69,7 +69,7 @@ const weatherInfo = async () => {
       await wxNotify({
         msgtype: 'text',
         text: {
-          content: 'hei'
+          content: 'heiiii 失败'
         }
       })
     }
