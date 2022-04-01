@@ -116,7 +116,7 @@ const sendMessage = async () => {
 }
 // goodMorning
 export const goodMorning = async () => {
-  await sendMessage()
+  // await sendMessage()
   // await goodWord()
   await weatherInfo()
 }
