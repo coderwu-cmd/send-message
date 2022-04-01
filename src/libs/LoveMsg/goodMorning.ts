@@ -64,6 +64,14 @@ const weatherInfo = async () => {
           content: 'hei'
         }
       })
+    } else {
+      // 发送消息
+      await wxNotify({
+        msgtype: 'text',
+        text: {
+          content: 'hei'
+        }
+      })
     }
   } catch (error) {
     console.log('weatherInfo:err', error)
