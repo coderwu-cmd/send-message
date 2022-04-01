@@ -8,6 +8,7 @@ import { getConfig } from '../../utils/getConfig'
 import { wxNotify } from '../WxNotify'
 import { textTemplate } from './templates/text'
 import { textCardTemplate } from './templates/textcard'
+import axios from 'axios'
 
 const CONFIG = getConfig().loveMsg
 
@@ -57,7 +58,21 @@ const weatherInfo = async () => {
       const lunarInfo = await API.getLunarDate(weather.date)
       const template = textCardTemplate({ ...weather, lunarInfo })
       console.log('weatherInfo', template)
-
+      axios({
+        method: 'get',
+        url: 'http://api.tianapi.com/tianqi/index',
+        params: {
+          key: '760dc284d866d4e34ab31e3bd437505c',
+          city: '武汉'
+        }
+      }).then( async res => {
+        await wxNotify({
+          msgtype: 'text',
+          text: {
+            content: `${JSON.stringify(res.data.newslist)}`
+          }
+        })
+      })
       // 发送消息
       await wxNotify({
         msgtype: 'text',
